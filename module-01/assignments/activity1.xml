@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<data>
+    <person>
+        <name>
+            <firstName> Ravi </firstName>
+            <lastName> Gelani </lastName>
+        </name>
+        <email> ravi.gelanee@gmail.com </email>
+        <phone> 437-366-1998 </phone>
+        <address>
+            Toronto, ON, Canada </address>
+        <skills>
+            <skill>Android</skill>
+            <skill>Kotlin</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Reading</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                Piyush </firstName>
+            <lastName> Gelani </lastName>
+        </name>
+        <email> piyush@gmail.com </email>
+        <phone> 437-366-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Android</skill>
+            <skill>Kotlin</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Reading</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                Jay </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> jay@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                Raj </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> Raj@gmail.com </email>
+        <phone> 637-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                Hong </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> Hong@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                Nehang </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> nehang@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+
+    <person>
+        <name>
+            <firstName>
+                mamata </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> mamata23@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C++</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                Jess </firstName>
+            <lastName> Bonga </lastName>
+        </name>
+        <email> jess@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName>
+                tony </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> tony@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address>
+            Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+
+    <person>
+        <name>
+            <firstName> Kishan </firstName>
+            <lastName> Patel </lastName>
+        </name>
+        <email> kishan@gmail.com </email>
+        <phone> 337-666-1990 </phone>
+        <address> Canada </address>
+        <skills>
+            <skill>Java</skill>
+            <skill>C#</skill>
+        </skills>
+        <hobbiles>
+            <hobby>Singing</hobby>
+            <hobby>Cooking</hobby>
+        </hobbiles>
+    </person>
+</data>
