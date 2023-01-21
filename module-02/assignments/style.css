@@ -1,0 +1,16 @@
+originalName {
+	font-size: 20px;
+	color: blue;
+	display: block;
+}
+category::before {
+	content: '\a';
+	white-space: pre;
+}
+title {
+	font-size: 25px;
+	font-weight: 300;
+	color: black;
+	background-color: cadetblue;
+	display: block;
+}

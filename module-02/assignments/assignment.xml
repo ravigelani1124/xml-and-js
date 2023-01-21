@@ -1,5 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet href="style.css" type="text/css"?>
+<!-- The above line is prolog-->
+<!DOCTYPE menuInfo [
+  <!ELEMENT menuInfo (title, summary, effectiveDate, menu+)>  <!-- Here the + in the menu is indicate that the
+  menu can be 1 or more -->
+  <!ELEMENT title (#PCDATA)>
+  <!ELEMENT summary (#PCDATA)>
+  <!ELEMENT effectiveDate (#PCDATA)>
+  <!ELEMENT menu (category?, menuItem+)>  <!-- Category? means that it either 0 or 1-->
+  <!ELEMENT category (#PCDATA)>
+  <!ELEMENT menuItem (itemName, description, price, indicator*)>  <!-- indicator* means that it either 0 or more-->
+  <!ELEMENT itemName (originalName, oldName?)>
+  <!ELEMENT originalName (#PCDATA)>
+  <!ELEMENT oldName (#PCDATA)>
+  <!ELEMENT description (#PCDATA)>
+  <!ELEMENT price (#PCDATA)>
+  <!ELEMENT indicator (#PCDATA)>
+]>
 <menuInfo>
+  <!-- This is the Document Body-->
   <title>Chester's Breakfast Menu</title>
   <summary>
     <![CDATA[
@@ -8,9 +27,10 @@
     up just the way you like them!!
     ]]>
   </summary>
-  <effective Date>03/12/2016</effective Date>
+  <effectiveDate>03/12/2016</effectiveDate>
   <menu>
     <category>Traditional Favorites</category>
+
     <menuItem>
       <itemName>
         <originalName> Rise n' Shine</originalName>
@@ -26,9 +46,10 @@
       </description>
       <price>7.95</price>
     </menuItem>
+
     <menuItem>
       <itemName>
-        <originalName> Fresh Mornin' Sampler </originalname>
+        <originalName> Fresh Mornin' Sampler </originalName>
         <oldName> Mornin' Sampler </oldName>
       </itemName>
       <description>
@@ -38,17 +59,18 @@
         or an Apple Bran Muffin.
         ]]>
       </description>
-      <price>6.95</price>
+      <price> 6.95</price>
       <indicator>&#9829;</indicator>  <!-- heart healthy -->
       <indicator>&#9830;</indicator>  <!-- low-sodium -->
-      <indicator>&#9824;</indicator>  <!-- vegan -->  
+      <indicator>&#9824;</indicator>  <!-- vegan -->
     </menuItem>
   </menu>
   <menu>
     <category>Lite and Quick</category>
+
     <menuItem>
       <itemName>
-        <name> Oatmeal Breakfast </originalName>
+        <originalName> Oatmeal Breakfast </originalName>
       </itemName>
       <description>
         <![CDATA[
@@ -59,10 +81,11 @@
         ]]>
       </description>
       <price>6.95</price>
-      <indicator>&#9829;</indicator>  <!-- heart healthy -->
+      <indicator> &#9829;</indicator>  <!-- heart healthy -->
       <indicator>&#9830;</indicator>  <!-- low-sodium -->
-      <indicator>&#9824;</indicator>  <!-- vegan -->  
+      <indicator>&#9824;</indicator>  <!-- vegan -->
     </menuItem>
+
     <menuItem>
       <itemName>
         <originalName> Chester's Meat Platter </originalName>
@@ -76,7 +99,12 @@
         ]]>
       </description>
       <price>12.95</price>
-      <indicator>&#9832;</indicator>  <!-- Low-carb -->
+      <indicator> &#9832;</indicator>  <!-- Low-carb -->
     </menuItem>
   </menu>
 </menuInfo>
+
+<!-- This is Epilog
+  Name: Ravikumar Arvindbhai Gelani
+  StudentID: N01552823
+-->
