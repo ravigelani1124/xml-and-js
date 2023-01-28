@@ -6,3 +6,4 @@
 4. Explain your thought process for these 2 declarations
 
 Create `module-3/assignments/assignment_YOURNAME.md` and add your theory answers. Add screenshots of each step to the file.
+
