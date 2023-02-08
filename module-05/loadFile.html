@@ -17,6 +17,12 @@
         const xmlDoc = xml.responseXML;
         document.getElementById("text").innerHTML =
           xmlDoc.getElementsByTagName("name")[0].childNodes[0].nodeValue;
+          var nameList = xmlDoc.getElementsByTagName("name");
+        console.log(nameElement);
+
+        for (var i = 0; i < nameList.length; i++) {
+          console.log(nameList[i].attributes["title"]);
+        }
       }
     </script>
   </body>
