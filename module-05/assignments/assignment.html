@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <table id="customer_data" border="1">
+        <tr>
+            <th>Customer ID</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Order</th>
+            <th>Items</th>
+        </tr>
+    </table>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                displayData(this.responseXML);
+            }
+        };
+        xhttp.open("GET", "../customers.xml", true);
+        xhttp.send();
+
+        function stringToNode(html) {
+            const template = document.createElement(`template`);
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+
+        function setCustomerInfo(customer) {
+            const data = `
+        <tr>
+        <td>${customer.id}</td>
+        <td>${customer.title} ${customer.name}</td>
+        <td>${customer.address}</td>
+        <td>${customer.email}</td>
+        <td>${customer.phone}</td>
+        <td>
+          <table>
+            <tr>
+              <td>OrderID: ${customer.orderID}</td>
+            </tr>
+            <tr>
+              <td>OrderBy: ${customer.orderBy}</td>
+            </tr>
+            <tr>
+              <td>OrderDate: ${customer.orderDate}</td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td>Item price: ${customer.itemPrice}</td>
+           </tr>
+           <tr>
+              <td>Item quantity: ${customer.itemQty}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+        `;
+
+            return stringToNode(data);
+        }
+
+        function parseInfo(element) {
+            const id = element.attributes[0].nodeValue;
+            const title =
+                element.getElementsByTagName("name")[0].attributes[0].nodeValue;
+            const name =
+                element.getElementsByTagName(`name`)[0].childNodes[0].nodeValue;
+            const address =
+                element.getElementsByTagName(`address`)[0].childNodes[0].nodeValue;
+
+            const phone = element.getElementsByTagName(`phone`)[0].childNodes[0].nodeValue;
+
+
+            if (element.getElementsByTagName(`email`)[0]) {
+                var email = element.getElementsByTagName(`email`)[0].childNodes[0].nodeValue;
+            } else {
+                var email = "Data Not Found.";
+            }
+            const orderID =
+                element.getElementsByTagName(`order`)[0].attributes[0].nodeValue;
+            const orderBy =
+                element.getElementsByTagName(`order`)[0].attributes[1].nodeValue;
+            const orderDate =
+                element.getElementsByTagName(`orderDate`)[0].childNodes[0].nodeValue;
+            const itemPrice =
+                element.getElementsByTagName(`itemPrice`)[0].childNodes[0].nodeValue;
+            const itemQty =
+                element.getElementsByTagName(`itemQty`)[0].childNodes[0].nodeValue;
+
+            return {
+                id,
+                title,
+                name,
+                address,
+                phone,
+                email,
+                orderID,
+                orderBy,
+                orderDate,
+                itemPrice,
+                itemQty,
+            };
+        }
+
+        function displayData(xmlDoc) {
+            const customer_data = xmlDoc.getElementsByTagName(`customer`);
+            const list = document.getElementById(`customer_data`);
+            for (let i = 0; i < customer_data.length; i++) {
+                const element = customer_data[i];
+                const cust_parsed = parseInfo(element);
+                const element_info = setCustomerInfo(cust_parsed);
+                list.appendChild(element_info);
+            }
+        }
+    </script>
+</body>
+
+</html>
