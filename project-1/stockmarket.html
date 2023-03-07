@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Data Using HTML</title>
+  <link rel="stylesheet" href="stockmarket.css" />
+</head>
+
+<body>
+  <p>Stock Details</p>
+  <p>Using HTML</p>
+  <table id="data">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Currency</th>
+      <th>Address</th>
+      <th>Stocks</th>
+      <th>account</th>
+    </tr>
+  </table>
+  <script>
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        displayData(this.responseXML);
+      }
+    };
+    xhttp.open("GET", "./stockmarket.xml", true);
+    xhttp.send();
+
+    function stringToNode(html) {
+      const template = document.createElement(`template`);
+      html = html.trim();
+      template.innerHTML = html;
+      return template.content.firstChild;
+    }
+
+    function createStockDataLayout(dataParsed) {
+      console.log("dataParsed--" + dataParsed);
+
+      let stockdata = ``;
+      for (let stock of dataParsed.stocks) {
+        stockdata += `<tr>
+              <td>${stock.symbol}</td>
+              <td>${stock.name}</td>
+              <td>${stock.sector}</td>
+              <td>${stock.industry}</td>
+              <td>${stock.marketCap}</td>
+              <td>${stock.price}</td>
+            </tr>`;
+      }
+      const stockTable = `<table class="inner">
+            <tr id="titlecol">
+              <th>symbol</th>
+              <th>name</th>
+              <th>sector</th>
+              <th>industry</th>
+              <th>marketCap</th>
+              <th>price</th>
+            </tr>
+            ${stockdata}
+          </table>`;
+
+      let accountdata = ``;
+      for (let account of dataParsed.accounts) {
+        accountdata += `<tr>
+             <td>${account.name}</td>
+              <td>${account.gender}</td>
+              <td>${account.occupation}</td>
+              <td>${account.iban}</td>
+            </tr>`;
+      }
+      const accountTable = `<table class="inner">
+            <tr id="titlecol">
+              <th>name</th>
+              <th>gender</th>
+              <th>occupation</th>
+              <th>iban</th>
+            </tr>
+            ${accountdata}
+          </table>`;
+
+      const content = `
+        <tr>
+        <td>${dataParsed.id}</td>
+        <td>${dataParsed.name}</td>
+        <td>${dataParsed.currency}</td>
+        <td>${dataParsed.address}</td>
+        <td class="inner_td">${stockTable}</td>      
+        <td class="inner_td">${accountTable}</td>    
+      </tr>
+        `;
+      return stringToNode(content);
+    }
+
+    function parseStockData(xml) {
+      const id = xml.getElementsByTagName(`id`)[0].childNodes[0].nodeValue;
+      const name =
+        xml.getElementsByTagName(`name`)[0].childNodes[0].nodeValue;
+      const currency =
+        xml.getElementsByTagName(`currency`)[0].childNodes[0].nodeValue;
+      const address =
+        xml.getElementsByTagName("address")[0].children[0].innerHTML +
+        ", " +
+        xml.getElementsByTagName("address")[0].children[1].innerHTML +
+        ", " +
+        xml.getElementsByTagName("address")[0].children[2].innerHTML +
+        ", " +
+        xml.getElementsByTagName("address")[0].children[3].innerHTML;
+
+      const stocksList = xml.getElementsByTagName("stocks");
+
+      let stocks = [];
+
+      for (let i = 0; i < stocksList.length; i++) {
+        const stock = stocksList[i];
+        stocks.push({
+          symbol:
+            stock.getElementsByTagName("symbol")[0].childNodes[0].nodeValue,
+          name: stock.getElementsByTagName("name")[0].childNodes[0].nodeValue,
+          sector:
+            stock.getElementsByTagName("sector")[0].childNodes[0].nodeValue,
+          industry:
+            stock.getElementsByTagName("industry")[0].childNodes[0].nodeValue,
+          marketCap:
+            stock.getElementsByTagName("marketCap")[0].childNodes[0]
+              .nodeValue,
+          price:
+            stock.getElementsByTagName("price")[0].childNodes[0].nodeValue,
+        });
+      }
+
+      let accounts = [];
+      const accountsList = xml.getElementsByTagName("accounts");
+
+      for (let i = 0; i < accountsList.length; i++) {
+        const account = accountsList[i];
+
+        accounts.push({
+          name:
+            account.getElementsByTagName("holder")[0].children[0].innerHTML +
+            " " +
+            account.getElementsByTagName("holder")[0].children[1].innerHTML,
+          gender:
+            account.getElementsByTagName("holder")[0].children[2].innerHTML,
+          occupation:
+            account.getElementsByTagName("holder")[0].children[3].innerHTML,
+          iban: account.getElementsByTagName("bank")[0].children[0].innerHTML,
+        });
+      }
+
+      return {
+        id,
+        name,
+        currency,
+        address,
+        stocks,
+        accounts,
+      };
+    }
+
+    function displayData(xmlDoc) {
+      const base = xmlDoc.getElementsByTagName(`data`);
+      const cdata = document.getElementById(`data`);
+
+      for (let i = 0; i < base.length; i++) {
+        const cdata = base[i];
+        const stockParsed = parseStockData(cdata);
+        const stockInfo = createStockDataLayout(stockParsed);
+        data.appendChild(stockInfo);
+      }
+    }
+  </script>
+</body>
+
+</html>

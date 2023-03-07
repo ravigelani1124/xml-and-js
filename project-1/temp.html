@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University</title>
+    <link rel="stylesheet" href="university.css" />
+</head>
+
+<body>
+    <p>University Details</p>
+    <p>Using HTML</p>
+    <table id="uni">
+        <tr id="titlecol">
+            <th>Name</th>
+            <th>Address</th>
+            <th>Courses</th>
+            <th>Students</th>
+            <th>Faculties</th>
+        </tr>
+    </table>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                displayData(this.responseXML);
+            }
+        };
+        xhttp.open("GET", "./university.xml", true);
+        xhttp.send();
+
+        function stringToNode(html) {
+            const template = document.createElement(`template`);
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+
+        function createUniversityInfo(university) {
+            let courseData = ``;
+            for (let course of university.courses) {
+                courseData += `<tr>
+              <td>${course.coursesId}</td>
+              <td>${course.coursesTitle}</td>
+              <td>${course.coursesDescription}</td>
+            </tr>`;
+            }
+            const courseTable = `<table class="inner">
+            <tr id="titlecol">
+              <th>Id</th>
+              <th>Title</th>
+              <th>Description</th>
+            </tr>
+            ${courseData}
+          </table>`;
+
+            let studentData = ``;
+            for (let student of university.students) {
+                studentData += `<tr>
+              <td>${student.studentsId}</td>
+              <td>${student.studentsName}</td>
+              <td>${student.studentsDOB}</td>
+              <td>${student.studentsEmail}</td>
+            </tr>`;
+            }
+            const studentTable = `<table class="inner">
+            <tr id="titlecol">
+              <th>Id</th>
+              <th>Name</th>
+              <th>Dob</th>
+              <th>Email</th>
+            </tr>
+            ${studentData}
+          </table>`;
+
+            let facultyData = ``;
+            for (let faculty of university.faculties) {
+                facultyData += `<tr>
+              <td>${faculty.facultyId}</td>
+              <td>${faculty.facultyName}</td>
+              <td>${faculty.facultyEmail}</td>
+              <td>${faculty.facultyPhoneNumber}</td>
+            </tr>`;
+            }
+            const facultyTable = `<table class="inner">
+            <tr id="titlecol">
+              <th>Id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+            </tr>
+            ${facultyData}
+          </table>`;
+
+            const content = `
+        <tr>
+        <td>${university.name}</td>
+        <td>${university.address}</td>
+        <td id="courses">
+            ${courseTable}
+        </td>
+        <td id="students">
+          ${studentTable}
+        </td>
+        <td id="faculty">
+          ${facultyTable}
+        </td>
+      </tr>
+        `;
+
+            return stringToNode(content);
+        }
+
+        function parseInfo(element) {
+            const name =
+                element.getElementsByTagName(`name`)[0].childNodes[0].nodeValue;
+
+            const address =
+                element.getElementsByTagName("address")[0].children[0].innerHTML +
+                ", " +
+                element.getElementsByTagName("address")[0].children[1].innerHTML +
+                ", " +
+                element.getElementsByTagName("address")[0].children[2].innerHTML +
+                ", " +
+                element.getElementsByTagName("address")[0].children[3].innerHTML +
+                ", " +
+                element.getElementsByTagName("address")[0].children[4].innerHTML;
+
+            const courselist = element.getElementsByTagName("courses");
+            const studentlist = element.getElementsByTagName("students");
+            const facultylist = element.getElementsByTagName("faculty");
+
+            let courses = [];
+            let students = [];
+            let faculties = [];
+
+            for (let i = 0; i < courselist.length; i++) {
+                const course = courselist[i];
+                courses.push({
+                    coursesId:
+                        course.getElementsByTagName("id")[0].childNodes[0].nodeValue,
+                    coursesTitle:
+                        course.getElementsByTagName("title")[0].childNodes[0].nodeValue,
+                    coursesDescription:
+                        course.getElementsByTagName("description")[0].childNodes[0]
+                            .nodeValue,
+                });
+            }
+
+            for (let i = 0; i < studentlist.length; i++) {
+                const student = studentlist[i];
+                students.push({
+                    studentsId:
+                        student.getElementsByTagName("id")[0].childNodes[0].nodeValue,
+                    studentsName:
+                        student.getElementsByTagName("firstName")[0].childNodes[0]
+                            .nodeValue +
+                        " " +
+                        student.getElementsByTagName("lastName")[0].childNodes[0]
+                            .nodeValue,
+                    studentsDOB:
+                        student.getElementsByTagName("dob")[0].childNodes[0].nodeValue,
+                    studentsEmail:
+                        student.getElementsByTagName("email")[0].childNodes[0].nodeValue,
+                });
+            }
+
+            for (let i = 0; i < facultylist.length; i++) {
+                const faculty = facultylist[i];
+                faculties.push({
+                    facultyId:
+                        faculty.getElementsByTagName("id")[0].childNodes[0].nodeValue,
+                    facultyName:
+                        faculty.getElementsByTagName("firstName")[0].childNodes[0]
+                            .nodeValue +
+                        " " +
+                        faculty.getElementsByTagName("lastName")[0].childNodes[0]
+                            .nodeValue,
+                    facultyEmail:
+                        faculty.getElementsByTagName("email")[0].childNodes[0].nodeValue,
+                    facultyPhoneNumber:
+                        faculty.getElementsByTagName("phoneNumber")[0].childNodes[0]
+                            .nodeValue,
+                });
+            }
+
+            return {
+                name,
+                address,
+                courses,
+                students,
+                faculties,
+            };
+        }
+
+        function displayData(xmlDoc) {
+            const universitiesData = xmlDoc.getElementsByTagName(`University`);
+            const tableData = document.getElementById(`uni`);
+
+            console.log(universitiesData);
+            for (let i = 0; i < universitiesData.length; i++) {
+                const university = universitiesData[i];
+                const uniParsed = parseInfo(university);
+
+                const universityInfo = createUniversityInfo(uniParsed);
+                tableData.appendChild(universityInfo);
+            }
+        }
+    </script>
+</body>
+
+</html>
