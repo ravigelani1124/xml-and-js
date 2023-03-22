@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <table id="people" border="1">
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Id Address</th>
+        </tr>
+    </table>
+    <script>
+        const xhr = (url, method = 'GET') => new Promise((resolve) => {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    resolve(this.responseXML);
+                }
+            };
+            xhttp.open(method, url);
+            xhttp.send();
+        })
+
+        function stringToNode(html) {
+            const template = document.createElement(`template`);
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+
+        function parsePeopleData(xml) {
+            const firstName = xml.getElementsByTagName('firstName')[0].childNodes[0].nodeValue;
+            const lastName = xml.getElementsByTagName('lastName')[0].childNodes[0].nodeValue;
+            const email = xml.getElementsByTagName('email')[0].childNodes[0].nodeValue;
+            const balance = xml.getElementsByTagName('gender')[0].childNodes[0].nodeValue;
+            const ip_address = xml.getElementsByTagName('ipAddress')[0].childNodes[0].nodeValue;
+
+            return {
+                firstName,
+                lastName,
+                email,
+                balance,
+                ip_address
+            };
+        }
+
+        function createPeopleData(rdata) {
+            const content =
+                `<tr>
+                    <td>${rdata.firstName} ${rdata.lastName} </td>                
+                    <td>${rdata.email}</td>
+                    <td>${rdata.balance}</td>
+                    <td>${rdata.ip_address}</td>
+                </tr>`;
+            return stringToNode(content);
+        }
+
+        function displayData(xmlDoc) {
+
+            const peoples = xmlDoc.getElementsByTagName(`person`);
+            const table = document.getElementById(`people`);
+
+            for (let index = 0; index < peoples.length; index++) {
+                const element = peoples[index];
+                const peopleRecord = parsePeopleData(element);
+                const peopleElement = createPeopleData(peopleRecord);
+                table.appendChild(peopleElement);
+            }
+        }
+
+    //Method-1
+      fetch("people.xml")
+        .then((response) => response.text())
+        .then((str) => new DOMParser().parseFromString(str, "text/xml"))
+        .then(displayData);
+
+    //Method-2
+    //   const main = async () => {
+    //     const response = await fetch("people.xml");
+    //     const str = await response.text();
+    //     const xmlData = new DOMParser().parseFromString(str, "text/xml");
+    //     displayData(xmlData);
+    //   };
+    //   main();
+
+    //Method-3
+    // const main = async () => {
+    //     const fetchData = await fetch("people.xml")
+    //         .then((data) => data.text())
+    //         .then((strData) =>
+    //             new DOMParser().parseFromString(strData, "text/xml")
+    //         );
+    //     displayData(fetchData);
+    // };
+    // main();
+    </script>
+</body>
+
+</html>
