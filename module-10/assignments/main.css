@@ -1,0 +1,44 @@
+.genre-card {
+	max-width: 100%;
+	display: grid;
+	align-items: center;
+	color: rgb(29, 41, 183);
+	padding-left: 20px;
+	background-color: rgb(219, 194, 217);
+	grid-template-columns: 1fr 2fr;
+	border-radius: 10px;
+	margin: 10px;
+}
+.genre-card:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.genre-card > div > a {
+	color: white;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.genre-card > div > p {
+	color: #333;
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin-top: 10px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+ol {
+	list-style: none;
+	margin: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+	grid-auto-rows: minmax(100px, auto);
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+div > h2 {
+	text-align: left;
+}
