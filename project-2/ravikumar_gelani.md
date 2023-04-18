@@ -1,0 +1,1 @@
+I have created  List of currency page with Search option using search-input. For api call I have use fatch. Alos give card style.

@@ -1,0 +1,164 @@
+/* Reset CSS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Global styles */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    color: #4caf50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+header nav li {
+    margin: 0 10px;
+}
+
+main {
+    margin: 40px auto;
+    width: 80%;
+}
+
+h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.exchange-rates {
+    margin: 20px auto;
+    width: 500px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .exchange-rates p {
+    margin: 0;
+    font-size: 18px;
+    color: #4d4d4d;
+    font-family: 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+  }
+  
+  .exchange-rates span {
+    font-weight: bold;
+    color: #0070c0;
+  }
+  
+  .bitcoin-image {
+    width: 300px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .ethereum-image {
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .litecoin-image {
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .bitcoin-heading {
+    text-align: center;
+    color: #f7931a;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-top: 40px;
+  }
+  
+  .ethereum-heading {
+    text-align: center;
+    color: #627eea;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-top: 40px;
+  }
+  
+  .litecoin-heading {
+    text-align: center;
+    color: #b8b8b8;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin-top: 40px;
+  }
+  .coin-container {
+    margin: 20px auto;
+    width: 500px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .coin-container p {
+    margin: 0;
+    font-size: 18px;
+    color: #4d4d4d;
+    font-family: 'Helvetica Neue', sans-serif;
+    line-height: 1.5;
+  }
+  
+  .coin-container span {
+    font-weight: bold;
+    color: #0070c0;
+  }
+  
+  .coin-container img {
+    width: 300px;
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+  }
+  
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
